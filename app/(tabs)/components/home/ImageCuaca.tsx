@@ -9,7 +9,7 @@ type ImageCuacaProps = {
   size?: number;
 }
 
-export default function ImageCuaca({ kode = 1000, isDay = true, size = 350 }: ImageCuacaProps) {
+export default function ImageCuaca({ kode = 1000, isDay = true, size = 320 }: ImageCuacaProps) {
   return (
     <View style={styles.container}>
       <Image 
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
   },
   image: {
     width: 300,
     height: 300,
+    marginTop: -50,
   }
 })

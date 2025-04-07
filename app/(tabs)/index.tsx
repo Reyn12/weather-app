@@ -8,6 +8,7 @@ import { useRouter } from 'expo-router';
 import Header from './components/home/Header';
 import SwitchBtn from './components/home/SwitchBtn';
 import ImageCuaca from './components/home/ImageCuaca';
+import StatusCuaca from './components/home/StatusCuaca';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -41,6 +42,7 @@ export default function HomeScreen() {
         <Header />
         <SwitchBtn />
         <ImageCuaca kode={1000} isDay={true} />
+        <StatusCuaca />
         </SafeAreaView>
     </LinearGradient>
   );
