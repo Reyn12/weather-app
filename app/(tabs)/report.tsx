@@ -1,11 +1,27 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Colors from '../../constants/Colors';
 
 export default function ReportScreen() {
+  useEffect(() => {
+    // Set status bar ke light mode (teks putih)
+    StatusBar.setBarStyle('light-content');
+    
+    // Ini penting: kembalikan ke dark mode saat komponen unmount
+    return () => {
+      StatusBar.setBarStyle('dark-content');
+    };
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={[Colors.biruMuda, Colors.primary]}
+      style={styles.container}
+    >
+      <StatusBar barStyle="light-content" />
       <Text style={styles.title}>Report Screen</Text>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -14,10 +30,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: Colors.putih,
   },
 });
