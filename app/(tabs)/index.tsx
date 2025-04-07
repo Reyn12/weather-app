@@ -16,8 +16,74 @@ import ComingSoon from '../../components/ComingSoon';
 export default function HomeScreen() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<Btn>('forecast');
+  const [weatherData, setWeatherData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Nanti Fetch Data disini untuk api weather app nya 
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        // Contoh lokasi default
+        const location = 'Jakarta';
+        const apiKey = process.env.EXPO_PUBLIC_WEATHER_API_KEY;
+
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=2&aqi=yes&alerts=no`
+        );
+
+        if (!response.ok) {
+          throw new Error('Gagal mengambil data cuaca');
+        }
+
+        const data = await response.json();
+        // Filter data yang penting aja
+        const filteredData = {
+          location: {
+            name: data.location.name,
+            country: data.location.country
+          },
+          current: {
+            temp_c: data.current.temp_c,
+            condition: data.current.condition,
+            humidity: data.current.humidity,
+            wind_kph: data.current.wind_kph,
+            wind_dir: data.current.wind_dir,
+            last_updated: data.current.last_updated
+          },
+          forecast: data.forecast.forecastday.map((day: { date: any; day: { maxtemp_c: any; mintemp_c: any; condition: any; }; hour: any[]; }) => ({
+            date: day.date,
+            day: {
+              maxtemp_c: day.day.maxtemp_c,
+              mintemp_c: day.day.mintemp_c,
+              condition: day.day.condition
+            },
+            // Ambil data per 3 jam aja biar ga kebanyakan
+            hour: day.hour.filter((_, index) => index % 3 === 0).map(hour => ({
+              time: hour.time,
+              temp_c: hour.temp_c,
+              condition: hour.condition
+            }))
+          }))
+        };
+
+        setWeatherData(filteredData);
+
+        // Cek data
+        console.log('Filtered Weather Data:', JSON.stringify(filteredData, null, 2));
+
+        setLoading(false);
+        // console.log('Data cuaca berhasil diambil:', data);
+      } catch (err: any) {
+        console.error('Error fetching weather data:', err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchWeatherData();
+  }, []);
+
 
   useEffect(() => {
     // Set status bar ke light mode (teks putih)
@@ -39,7 +105,7 @@ export default function HomeScreen() {
           tint="light"
         />
       </View>
-       
+
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <SwitchBtn activeTab={activeTab} setActiveTab={setActiveTab} />

@@ -1,6 +1,6 @@
 // components/home/SwitchTabs.tsx
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import Colors from '../../../../constants/Colors'
 
 export type Btn = 'forecast' | 'air-quality'
