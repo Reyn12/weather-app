@@ -329,9 +329,9 @@ export interface KondisiCuaca {
     // }
     
     // // Berangin
-    // if ([1114, 1117].includes(code)) {
-    //   return require('../assets/icons/berangin.png');  // Awan dengan angin
-    // }
+    if ([1114, 1117].includes(code)) {
+      return require('../assets/images/cuaca/berangin.png');  // Awan dengan angin
+    }
     
     // // Gerimis/Hujan ringan
     // if ([1063, 1150, 1153, 1180, 1183, 1240].includes(code)) {
@@ -349,9 +349,9 @@ export interface KondisiCuaca {
     // }
     
     // // Badai petir (tanpa hujan)
-    // if (code === 1087) {
-    //   return require('../assets/icons/petir.png');  // Awan dengan petir
-    // }
+    if (code === 1087) {
+      return require('../assets/images/cuaca/hujan_petir.png');  // Awan dengan petir
+    }
     
     // // Badai hujan (hujan + petir)
     // if ([1273, 1276].includes(code)) {

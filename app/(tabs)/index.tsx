@@ -9,6 +9,7 @@ import Header from './components/home/Header';
 import SwitchBtn from './components/home/SwitchBtn';
 import ImageCuaca from './components/home/ImageCuaca';
 import StatusCuaca from './components/home/StatusCuaca';
+import Today from './components/home/Today';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -41,8 +42,9 @@ export default function HomeScreen() {
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <SwitchBtn />
-        <ImageCuaca kode={1000} isDay={true} />
+        <ImageCuaca />
         <StatusCuaca />
+        <Today />
         </SafeAreaView>
     </LinearGradient>
   );
