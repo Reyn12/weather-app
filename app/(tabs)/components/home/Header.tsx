@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     gap: 8,
+    marginTop: 20,
   },
   title: {
     fontSize: 24,
