@@ -33,7 +33,13 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Izinkan aplikasi mengakses lokasi kamu untuk menampilkan cuaca di lokasi kamu saat ini."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

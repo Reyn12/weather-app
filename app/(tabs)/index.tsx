@@ -11,6 +11,7 @@ import ImageCuaca from './components/home/ImageCuaca';
 import StatusCuaca from './components/home/StatusCuaca';
 import Today from './components/home/Today';
 import ComingSoon from '../../components/ComingSoon';
+import * as Location from 'expo-location';
 
 
 export default function HomeScreen() {
@@ -24,18 +25,45 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        // Contoh lokasi default
-        const location = 'Jakarta';
+        setLoading(true);
+  
+        // Request permission lokasi
+        let { status } = await Location.requestForegroundPermissionsAsync();
+  
+        if (status !== 'granted') {
+          setLoading(false);
+          return;
+        }
+  
+        // Dapatkan lokasi user
+        const location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Highest
+        });
+        const { latitude, longitude } = location.coords;
         const apiKey = process.env.EXPO_PUBLIC_WEATHER_API_KEY;
-
-        const response = await fetch(
-          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=2&aqi=yes&alerts=no`
+  
+        // Pakai geocoding dulu untuk dapat nama kota yang tepat
+        const geocodingResponse = await fetch(
+          `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${latitude},${longitude}`
         );
-
+        const geocodingData = await geocodingResponse.json();
+  
+        // Ambil lokasi terdekat dari hasil geocoding
+        let locationQuery = `${latitude},${longitude}`;
+        if (geocodingData && geocodingData.length > 0) {
+          // Gunakan nama kota dari hasil geocoding jika tersedia
+          locationQuery = geocodingData[0].name;
+        }
+  
+        // Lalu gunakan query lokasi untuk fetch data cuaca
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${locationQuery}&days=2&aqi=yes&alerts=no`
+        );
+  
         if (!response.ok) {
           throw new Error('Gagal mengambil data cuaca');
         }
-
+  
         const data = await response.json();
         // Filter data yang penting aja
         const filteredData = {
@@ -66,12 +94,12 @@ export default function HomeScreen() {
             }))
           }))
         };
-
+  
         setWeatherData(filteredData);
-
+  
         // Cek data
         console.log('Filtered Weather Data:', JSON.stringify(filteredData, null, 2));
-
+  
         setLoading(false);
         // console.log('Data cuaca berhasil diambil:', data);
       } catch (err: any) {
@@ -80,7 +108,7 @@ export default function HomeScreen() {
         setLoading(false);
       }
     };
-
+  
     fetchWeatherData();
   }, []);
 
