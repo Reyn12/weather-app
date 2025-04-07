@@ -1,4 +1,4 @@
-import { Home, Search, BarChart, Settings } from 'lucide-react-native';
+import { House, Search, Settings, ChartArea } from 'lucide-react-native';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Slot, useRouter, usePathname } from 'expo-router';
 import Colors from '../../constants/Colors';
@@ -22,9 +22,10 @@ export default function TabLayout() {
           style={styles.tabItem} 
           onPress={() => router.push('/')}
         >
-          <Home 
+          <House 
             size={28} 
-            color={isActive('/') ? '#fff' : 'rgba(255,255,255,0.6)'} 
+            color={isActive('/') ? Colors.putih : Colors.putihTransparan} 
+            fill={isActive('/') ? Colors.putih : 'transparent'} 
           />
         </TouchableOpacity>
         
@@ -34,7 +35,8 @@ export default function TabLayout() {
         >
           <Search 
             size={28} 
-            color={isActive('/search') ? '#fff' : 'rgba(255,255,255,0.6)'} 
+            color={isActive('/search') ? Colors.putih : Colors.putihTransparan} 
+            fill={isActive('/search') ? Colors.putih : 'transparent'} 
           />
         </TouchableOpacity>
         
@@ -42,10 +44,10 @@ export default function TabLayout() {
           style={styles.tabItem} 
           onPress={() => router.push('/report')}
         >
-          <BarChart 
+          <ChartArea 
             size={28} 
-            color={isActive('/report') ? '#fff' : 'rgba(255,255,255,0.6)'} 
-          />
+            color={isActive('/report') ? Colors.putih : Colors.putihTransparan} 
+            />
         </TouchableOpacity>
         
         <TouchableOpacity 
@@ -54,7 +56,7 @@ export default function TabLayout() {
         >
           <Settings 
             size={28} 
-            color={isActive('/setting') ? '#fff' : 'rgba(255,255,255,0.6)'} 
+            color={isActive('/setting') ? Colors.putih : Colors.putihTransparan} 
           />
         </TouchableOpacity>
       </View>
