@@ -3,10 +3,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '../../../../constants/Colors'
 
-type Btn = 'forecast' | 'air-quality'
+export type Btn = 'forecast' | 'air-quality'
 
-export default function SwitchBtn() {
-  const [activeTab, setActiveTab] = useState<Btn>('forecast')
+interface SwitchBtnProps {
+  activeTab: Btn;
+  setActiveTab: (tab: Btn) => void;
+}
+
+export default function SwitchBtn({ activeTab, setActiveTab }: SwitchBtnProps) {
 
   return (
     <View style={styles.container}>
@@ -15,9 +19,9 @@ export default function SwitchBtn() {
         onPress={() => setActiveTab('forecast')}
       >
         <Text style={[styles.btnText, activeTab === 'forecast' && styles.activeBtnText]}>Forecast</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity 
+      </TouchableOpacity> 
+       
+      <TouchableOpacity  
         style={[styles.btn, activeTab === 'air-quality' && styles.activeBtn]} 
         onPress={() => setActiveTab('air-quality')}
       >

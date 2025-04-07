@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,13 +6,18 @@ import { BlurView } from 'expo-blur';
 import Colors from '../../constants/Colors';
 import { useRouter } from 'expo-router';
 import Header from './components/home/Header';
-import SwitchBtn from './components/home/SwitchBtn';
+import SwitchBtn, { Btn } from './components/home/SwitchBtn';
 import ImageCuaca from './components/home/ImageCuaca';
 import StatusCuaca from './components/home/StatusCuaca';
 import Today from './components/home/Today';
+import ComingSoon from '../../components/ComingSoon';
+
 
 export default function HomeScreen() {
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState<Btn>('forecast');
+
+  // Nanti Fetch Data disini untuk api weather app nya 
 
   useEffect(() => {
     // Set status bar ke light mode (teks putih)
@@ -25,10 +30,7 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <LinearGradient
-      colors={[Colors.biruMuda, Colors.primary]}
-      style={styles.container}
-    >
+    <LinearGradient colors={[Colors.biruMuda, Colors.primary]} style={styles.container}>
       {/* Lingkaran blur pake BlurView */}
       <View style={styles.blurCircleContainer}>
         <BlurView
@@ -37,15 +39,24 @@ export default function HomeScreen() {
           tint="light"
         />
       </View>
-
-      {/* Main Content */}
+       
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
-        <SwitchBtn />
-        <ImageCuaca />
-        <StatusCuaca />
-        <Today />
-        </SafeAreaView>
+        <SwitchBtn activeTab={activeTab} setActiveTab={setActiveTab} />
+
+        {/* Conditional rendering berdasarkan activeTab */}
+        {activeTab === 'forecast' ? (
+          // UI Forecast
+          <>
+            <ImageCuaca />
+            <StatusCuaca />
+            <Today />
+          </>
+        ) : (
+          // UI Air Quality
+          <ComingSoon />
+        )}
+      </SafeAreaView>
     </LinearGradient>
   );
 }
