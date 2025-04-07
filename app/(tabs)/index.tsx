@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BlurView } from 'expo-blur';
 import Colors from '../../constants/Colors';
 import { useRouter } from 'expo-router';
 import Header from './components/home/Header';
+import SwitchBtn from './components/home/SwitchBtn';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -27,12 +28,17 @@ export default function HomeScreen() {
     >
       {/* Lingkaran blur pake BlurView */}
       <View style={styles.blurCircleContainer}>
-        <BlurView intensity={100} style={styles.blurCircle} tint="light" />
+        <BlurView
+          intensity={45}
+          style={[styles.blurCircle, { backgroundColor: 'rgba(22, 31, 4, 0.3)' }]}
+          tint="light"
+        />
       </View>
 
+      {/* Main Content */}
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
-
+        <SwitchBtn />
       </SafeAreaView>
     </LinearGradient>
   );
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     top: -80,
-    right: -80,
+    right: -75,
     borderRadius: 100,
     overflow: 'hidden', // Penting buat BlurView
     zIndex: 0,

@@ -1,6 +1,6 @@
 export default {
     primary: '#080531',
-    biruMuda: '#0e0954',
+    biruMuda: '#3027b0',
     
     putih: '#fff',
     putihTransparan: '#ffffff99'

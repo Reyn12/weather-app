@@ -20,10 +20,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: Colors.putih,
     fontFamily: 'Lato-Bold',
+    letterSpacing: 1,
   },
   subTitle: {
     fontSize: 16,
