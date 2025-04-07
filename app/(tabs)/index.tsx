@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '../../constants/Colors';
+import { useRouter } from 'expo-router';
+import Header from './components/home/Header';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   useEffect(() => {
     // Set status bar ke light mode (teks putih)
     StatusBar.setBarStyle('light-content');
-    
+
     // Ini penting: kembalikan ke dark mode saat komponen unmount
     return () => {
-      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBarStyle('light-content');
     };
   }, []);
 
@@ -19,8 +24,10 @@ export default function HomeScreen() {
       colors={[Colors.biruMuda, Colors.primary]}
       style={styles.container}
     >
-      <StatusBar barStyle="light-content" />
-      <Text style={styles.title}>Home Screen</Text>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Header />
+
+      </SafeAreaView>
     </LinearGradient>
   );
 }
@@ -28,12 +35,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.putih,
-  },
+    paddingHorizontal: 20,
+  }
 });
