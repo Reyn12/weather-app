@@ -7,6 +7,7 @@ import Colors from '../../constants/Colors';
 import { useRouter } from 'expo-router';
 import Header from './components/home/Header';
 import SwitchBtn from './components/home/SwitchBtn';
+import ImageCuaca from './components/home/ImageCuaca';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -39,7 +40,8 @@ export default function HomeScreen() {
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <SwitchBtn />
-      </SafeAreaView>
+        <ImageCuaca kode={1000} isDay={true} />
+        </SafeAreaView>
     </LinearGradient>
   );
 }

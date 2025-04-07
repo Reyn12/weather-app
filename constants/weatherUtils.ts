@@ -303,68 +303,64 @@ export interface KondisiCuaca {
   export const getIkonCuaca = (code: number, isDay: boolean = true): any => {
     // Cerah (siang/malam)
     if (code === 1000) {
-      return isDay 
-        ? require('../assets/icons/cerah.png')  // Matahari penuh
-        : require('../assets/icons/malam_cerah.png');  // Bulan dan bintang
+      return require('../assets/images/cuaca/Cerah.png')  // Matahari penuh
     }
     
-    // Berawan sebagian
-    if (code === 1003) {
-      return isDay
-        ? require('../assets/icons/berawan_sebagian_siang.png')  // Matahari dengan awan
-        : require('../assets/icons/berawan_sebagian_malam.png');  // Bulan dengan awan
-    }
+    // // Berawan sebagian
+    // if (code === 1003) {
+    //   return isDay
+    //     ? require('../assets/icons/berawan_sebagian_siang.png')  // Matahari dengan awan
+    //     : require('../assets/icons/berawan_sebagian_malam.png');  // Bulan dengan awan
+    // }
     
-    // Berawan
-    if (code === 1006) {
-      return require('../assets/icons/berawan.png');  // Awan putih
-    }
+    // // Berawan
+    // if (code === 1006) {
+    //   return require('../assets/icons/berawan.png');  // Awan putih
+    // }
     
-    // Mendung
-    if (code === 1009) {
-      return require('../assets/icons/mendung.png');  // Awan tebal
-    }
+    // // Mendung
+    // if (code === 1009) {
+    //   return require('../assets/icons/mendung.png');  // Awan tebal
+    // }
     
-    // Berkabut
-    if ([1030, 1135, 1147].includes(code)) {
-      return require('../assets/icons/berkabut.png');  // Awan dengan kabut
-    }
+    // // Berkabut
+    // if ([1030, 1135, 1147].includes(code)) {
+    //   return require('../assets/icons/berkabut.png');  // Awan dengan kabut
+    // }
     
-    // Berangin
-    if ([1114, 1117].includes(code)) {
-      return require('../assets/icons/berangin.png');  // Awan dengan angin
-    }
+    // // Berangin
+    // if ([1114, 1117].includes(code)) {
+    //   return require('../assets/icons/berangin.png');  // Awan dengan angin
+    // }
     
-    // Gerimis/Hujan ringan
-    if ([1063, 1150, 1153, 1180, 1183, 1240].includes(code)) {
-      return require('../assets/icons/hujan_ringan.png');  // Awan dengan hujan ringan
-    }
+    // // Gerimis/Hujan ringan
+    // if ([1063, 1150, 1153, 1180, 1183, 1240].includes(code)) {
+    //   return require('../assets/icons/hujan_ringan.png');  // Awan dengan hujan ringan
+    // }
     
-    // Hujan sedang
-    if ([1168, 1171, 1186, 1189, 1198, 1201].includes(code)) {
-      return require('../assets/icons/hujan_sedang.png');  // Awan dengan hujan sedang
-    }
+    // // Hujan sedang
+    // if ([1168, 1171, 1186, 1189, 1198, 1201].includes(code)) {
+    //   return require('../assets/icons/hujan_sedang.png');  // Awan dengan hujan sedang
+    // }
     
-    // Hujan deras
-    if ([1192, 1195, 1243, 1246].includes(code)) {
-      return require('../assets/icons/hujan_deras.png');  // Awan dengan hujan deras
-    }
+    // // Hujan deras
+    // if ([1192, 1195, 1243, 1246].includes(code)) {
+    //   return require('../assets/icons/hujan_deras.png');  // Awan dengan hujan deras
+    // }
     
-    // Badai petir (tanpa hujan)
-    if (code === 1087) {
-      return require('../assets/icons/petir.png');  // Awan dengan petir
-    }
+    // // Badai petir (tanpa hujan)
+    // if (code === 1087) {
+    //   return require('../assets/icons/petir.png');  // Awan dengan petir
+    // }
     
-    // Badai hujan (hujan + petir)
-    if ([1273, 1276].includes(code)) {
-      return require('../assets/icons/badai_hujan.png');  // Awan dengan hujan dan petir
-    }
+    // // Badai hujan (hujan + petir)
+    // if ([1273, 1276].includes(code)) {
+    //   return require('../assets/icons/badai_hujan.png');  // Awan dengan hujan dan petir
+    // }
     
-    // Salju (semua jenis)
-    if ([1066, 1069, 1072, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282].includes(code)) {
-      return require('../assets/icons/salju.png');  // Ikon salju (gunakan ikon default jika tidak punya)
-    }
-    
-    // Default icon jika tidak ada yang cocok
-    return require('../assets/icons/default.png');
+    // // Salju (semua jenis)
+    // if ([1066, 1069, 1072, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282].includes(code)) {
+    //   return require('../assets/icons/salju.png');  // Ikon salju (gunakan ikon default jika tidak punya)
+    // }
+    return ;
   };
